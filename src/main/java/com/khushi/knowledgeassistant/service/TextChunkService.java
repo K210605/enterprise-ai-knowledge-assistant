@@ -59,15 +59,15 @@ public class TextChunkService {
         return textChunkRepository.saveAll(chunks);
     }
 
-    // Retrieve all saved chunks
+    // Retrieve all saved chunks along with their documents
     public List<TextChunk> getAllChunks() {
 
-        return textChunkRepository.findAll();
+        return textChunkRepository.findAllWithDocument();
     }
 
-    // Retrieve chunks of a particular document
+    // Retrieve chunks of a particular document along with the document
     public List<TextChunk> getChunksByDocumentId(Long documentId) {
 
-        return textChunkRepository.findByDocumentId(documentId);
+        return textChunkRepository.findByDocumentIdWithDocument(documentId);
     }
 }

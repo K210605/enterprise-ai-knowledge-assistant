@@ -171,4 +171,24 @@ public class PdfController {
             ).body("PDF processing failed. Please try again.");
         }
     }
+        // Index chunks of an already uploaded document
+    @PostMapping("/{documentId}/index")
+    public ResponseEntity<?> indexDocument(
+            @PathVariable("documentId") Long documentId) {
+
+        try {
+
+            return ResponseEntity.ok(
+                    vectorStorageService.storeDocumentChunks(documentId)
+            );
+
+        } catch (Exception exception) {
+
+            exception.printStackTrace();
+
+            return ResponseEntity.status(
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            ).body("Indexing failed. Check server logs.");
+        }
+    }
 }
