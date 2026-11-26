@@ -18,6 +18,17 @@ This application enables users to upload multiple PDF documents and ask natural-
 - Store documents, chunks, and chat history in PostgreSQL.
 - Recover missing document vectors without re-indexing existing vectors.
 
+## Screenshots
+
+### Main Interface
+![Main Interface](screenshots/main-interface.png)
+
+### PDF Upload
+![PDF Upload](screenshots/pdf-upload.png)
+
+### RAG Response
+![RAG Response](screenshots/rag-response.png)
+
 ## Technology Stack
 
 | Technology | Purpose |
@@ -61,6 +72,8 @@ The application follows a Retrieval-Augmented Generation (RAG) workflow.
 
 ```text
 enterprise-ai-knowledge-assistant/
+│
+├── screenshots/
 │
 ├── src/
 │   ├── main/
@@ -165,6 +178,7 @@ http://localhost:8080
 | Method | Endpoint | Description |
 |---|---|---|
 | POST | `/api/pdf/upload` | Upload and index a PDF document |
+| POST | `/api/pdf/{documentId}/index` | Index chunks of an already uploaded document |
 | POST | `/api/search` | Ask questions using RAG |
 | POST | `/api/chat` | Generate an AI response |
 | GET | `/api/conversations` | Retrieve conversations |
@@ -178,6 +192,7 @@ http://localhost:8080
 - User authentication and authorization.
 - Document-level access control.
 - Improved retrieval ranking and relevance filtering.
+- Whole-document summarization.
 - Automated testing.
 - Cloud deployment.
 - Enhanced error handling and monitoring.
