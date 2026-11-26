@@ -1,0 +1,50 @@
+services:
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:17-alpine
+    container_name: rag-postgres
+
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    ports:
+       - "127.0.0.1:5433:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+  # ChromaDB Vector Database
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: rag-chromadb
+
+    restart: unless-stopped
+
+    environment:
+      IS_PERSISTENT: "TRUE"
+
+    ports:
+      - "127.0.0.1:${CHROMA_PORT:-8000}:8000"
+
+    volumes:
+      - chroma_data:/chroma/chroma/
+
+
+# Persistent Storage
+volumes:
+  postgres_data:
+  chroma_data:

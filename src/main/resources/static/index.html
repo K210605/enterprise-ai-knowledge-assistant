@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Knowledge Assistant</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <h2>Knowledge AI</h2>
+
+        <button id="newChatBtn">+ New Chat</button>
+
+        <!-- Knowledge Base -->
+        <div class="upload-section">
+
+            <h3>Knowledge Base</h3>
+
+            <input type="file" id="pdfInput" accept=".pdf">
+
+            <button id="uploadBtn">Upload PDF</button>
+
+            <p id="uploadStatus"></p>
+
+        </div>
+
+        <!-- Chat History -->
+        <div class="chat-history-section">
+
+            <h3>Chat History</h3>
+
+            <div id="chatHistory" class="chat-history-list">
+
+                <p class="history-placeholder">
+                    Your previous conversations will appear here.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="sidebar-content">
+            <p>Your AI Knowledge Assistant</p>
+        </div>
+
+    </aside>
+
+
+    <!-- Main Chat Area -->
+    <main class="chat-container">
+
+        <header class="chat-header">
+
+            <h2>Enterprise AI Knowledge Assistant</h2>
+
+            <p>Ask questions from your uploaded documents</p>
+
+        </header>
+
+
+        <!-- Chat Messages -->
+        <section id="chatMessages" class="chat-messages">
+
+            <div class="welcome-message">
+
+                <h1>Hello! 👋</h1>
+
+                <p>
+                    Upload your PDF documents and ask me anything about them.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Chat Input -->
+        <footer class="chat-input-area">
+
+            <input
+                type="text"
+                id="questionInput"
+                placeholder="Ask something about your documents..."
+            >
+
+            <button id="sendBtn">Send</button>
+
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

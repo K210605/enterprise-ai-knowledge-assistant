@@ -1,0 +1,341 @@
+/* ==============================
+   GLOBAL STYLES
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #0b1120;
+    color: #ffffff;
+    height: 100vh;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+
+/* ==============================
+   SIDEBAR
+================================ */
+
+.sidebar {
+    width: 280px;
+    min-width: 280px;
+    background: #111827;
+    padding: 25px;
+    border-right: 1px solid #263247;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    color: #38bdf8;
+    margin-bottom: 30px;
+}
+
+.sidebar button {
+    width: 100%;
+    padding: 12px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.sidebar button:hover {
+    background: #334155;
+}
+
+.sidebar-content {
+    margin-top: auto;
+    padding-top: 25px;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+
+/* ==============================
+   PDF UPLOAD SECTION
+================================ */
+
+.upload-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #263247;
+}
+
+.upload-section h3 {
+    font-size: 15px;
+    margin-bottom: 15px;
+    color: #e2e8f0;
+}
+
+.upload-section input {
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 12px;
+    color: #cbd5e1;
+}
+
+.upload-section button {
+    background: #0284c7;
+    border: none;
+    margin-top: 5px;
+}
+
+.upload-section button:hover {
+    background: #0369a1;
+}
+
+#uploadStatus {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #38bdf8;
+    overflow-wrap: anywhere;
+}
+
+
+/* ==============================
+   CHAT HISTORY SECTION
+================================ */
+
+.chat-history-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #263247;
+}
+
+.chat-history-section h3 {
+    color: #e2e8f0;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.chat-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.history-placeholder {
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* Individual Chat Item */
+
+.chat-history-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 9px;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+
+.chat-history-item:hover {
+    background: #1e293b;
+}
+
+.chat-history-item.active {
+    background: #1e3a5f;
+    border-color: #0284c7;
+}
+
+.chat-history-title {
+    flex: 1;
+    min-width: 0;
+    color: #cbd5e1;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.chat-history-item.active .chat-history-title {
+    color: #38bdf8;
+}
+
+
+/* Delete Chat Button */
+
+.delete-chat-btn {
+    width: 28px !important;
+    min-width: 28px;
+    padding: 5px !important;
+    background: transparent !important;
+    border: none !important;
+    color: #64748b !important;
+    font-size: 15px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.chat-history-item:hover .delete-chat-btn {
+    opacity: 1;
+}
+
+.delete-chat-btn:hover {
+    color: #ef4444 !important;
+    background: #3f1d28 !important;
+}
+
+
+/* ==============================
+   MAIN CHAT CONTAINER
+================================ */
+
+.chat-container {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ==============================
+   CHAT HEADER
+================================ */
+
+.chat-header {
+    padding: 22px 30px;
+    border-bottom: 1px solid #263247;
+}
+
+.chat-header h2 {
+    font-size: 21px;
+    margin-bottom: 5px;
+}
+
+.chat-header p {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+
+/* ==============================
+   CHAT MESSAGES
+================================ */
+
+.chat-messages {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.welcome-message {
+    text-align: center;
+    margin-top: 150px;
+}
+
+.welcome-message h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    color: #38bdf8;
+}
+
+.welcome-message p {
+    color: #94a3b8;
+}
+
+
+/* ==============================
+   CHAT INPUT AREA
+================================ */
+
+.chat-input-area {
+    display: flex;
+    gap: 12px;
+    padding: 20px 30px;
+    border-top: 1px solid #263247;
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: 15px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    color: white;
+    outline: none;
+}
+
+.chat-input-area input:focus {
+    border-color: #38bdf8;
+}
+
+.chat-input-area button {
+    padding: 0 25px;
+    background: #0284c7;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.chat-input-area button:hover {
+    background: #0369a1;
+}
+
+
+/* ==============================
+   SCROLLBAR
+================================ */
+
+.sidebar::-webkit-scrollbar,
+.chat-messages::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 10px;
+}
+
+
+/* ==============================
+   RESPONSIVE DESIGN
+================================ */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        width: 220px;
+        min-width: 220px;
+        padding: 15px;
+    }
+
+    .chat-header {
+        padding: 18px;
+    }
+
+    .chat-header h2 {
+        font-size: 17px;
+    }
+
+    .chat-messages {
+        padding: 18px;
+    }
+
+    .chat-input-area {
+        padding: 15px;
+    }
+
+}
