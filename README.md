@@ -16,6 +16,7 @@ This application enables users to upload multiple PDF documents and ask natural-
 - Display retrieved document sources and chunk references.
 - Maintain chat history and previous conversations.
 - Store documents, chunks, and chat history in PostgreSQL.
+- Recover missing document vectors without re-indexing existing vectors.
 
 ## Technology Stack
 
@@ -37,15 +38,16 @@ This application enables users to upload multiple PDF documents and ask natural-
 
 The application follows a Retrieval-Augmented Generation (RAG) workflow.
 
-### Document Ingestion Pipeline
+### 1. Document Ingestion Pipeline
 
 1. **PDF Upload:** User uploads a PDF document.
 2. **Text Extraction:** Apache PDFBox extracts text from the PDF.
 3. **Text Chunking:** Extracted text is divided into smaller overlapping chunks.
 4. **Embedding Generation:** Gemini Embedding API converts text chunks into numerical vectors.
 5. **Vector Storage:** ChromaDB stores embeddings along with document metadata.
+6. **Document Persistence:** PostgreSQL stores document information and extracted content.
 
-### Question Answering Pipeline
+### 2. Question Answering Pipeline
 
 1. **User Query:** User submits a natural-language question.
 2. **Query Embedding:** Gemini Embedding API converts the question into a vector.
@@ -76,6 +78,7 @@ enterprise-ai-knowledge-assistant/
 │   │
 │   └── test/
 │
+├── Dockerfile
 ├── docker-compose.yml
 ├── pom.xml
 ├── .env.example
@@ -101,11 +104,13 @@ Create a `.env` file in the project root directory.
 Configure the following environment variables:
 
 ```properties
+POSTGRES_HOST=localhost
 POSTGRES_DB=knowledge_assistant
 POSTGRES_USER=rag_user
 POSTGRES_PASSWORD=your_password
 POSTGRES_PORT=5433
 
+CHROMA_URL=http://localhost:8000
 CHROMA_PORT=8000
 
 GEMINI_API_KEY=your_gemini_api_key
@@ -113,7 +118,7 @@ GEMINI_API_KEY=your_gemini_api_key
 
 **Security Note:** Never commit your actual `.env` file or Gemini API key to GitHub. Use `.env.example` as a configuration template.
 
-## How to Run
+## How to Run Locally
 
 ### 1. Clone the repository
 
@@ -129,7 +134,7 @@ cd enterprise-ai-knowledge-assistant
 
 ### 3. Configure environment variables
 
-Create your `.env` file using the configuration shown above.
+Create your `.env` file in the project root and add the required configuration values.
 
 ### 4. Start Docker services
 
@@ -137,9 +142,11 @@ Create your `.env` file using the configuration shown above.
 docker compose up -d
 ```
 
+This starts the PostgreSQL and ChromaDB containers.
+
 ### 5. Run the Spring Boot application
 
-**Windows:**
+**Windows PowerShell:**
 
 ```powershell
 .\mvnw.cmd spring-boot:run
@@ -182,5 +189,5 @@ http://localhost:8080
 B.Tech – Computer Science Engineering  
 Cybersecurity & Privacy
 
-- GitHub: https://github.com/K210605
-- LinkedIn: https://www.linkedin.com/in/khushi-sehgal-72a9aa286/
+- **GitHub:** https://github.com/K210605
+- **LinkedIn:** https://www.linkedin.com/in/khushi-sehgal-72a9aa286/
